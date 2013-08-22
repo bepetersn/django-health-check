@@ -27,7 +27,7 @@ def autodiscover():
         # Attempt to import the app's admin module.
         try:
             before_import_registry = copy.copy(plugin_dir._registry)
-            import_module('%s.plugin_health_check' % app)
+            import_module('%s.health' % app)
         except:
             # Reset the model registry to the state before the last import as
             # this import will have to reoccur on the next request and this
@@ -38,7 +38,7 @@ def autodiscover():
             # Decide whether to bubble up this error. If the app just
             # doesn't have an admin module, we can ignore the error
             # attempting to import it, otherwise we want it to bubble up.
-            if module_has_submodule(mod, 'plugin_health_check'):
+            if module_has_submodule(mod, 'health'):
                 raise
 
 def get_version(short=False):
